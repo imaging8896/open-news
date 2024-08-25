@@ -1,0 +1,46 @@
+name: ci-release
+
+concurrency: ci-version
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  get-new-version:
+    runs-on: ubuntu-24.04
+    outputs:
+      new-version: ${{ steps.dryRunGetNewVer.outputs.new_tag }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Dry run to get new version tag
+      id: dryRunGetNewVer
+      uses: anothrNick/github-tag-action@1.64.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # if you don't want to set write permissions use a PAT token
+        WITH_V: false
+        DRY_RUN: true
+        REPO_OWNER: imaging8896
+        DEFAULT_BUMP: patch
+    - name: Echo new tag
+      run: |
+        echo "The next tag version will be: ${{ steps.dryRunGetNewVer.outputs.new_tag }}"
+    - name: Echo current tag
+      run: |
+        echo "The current tag is: ${{ steps.dryRunGetNewVer.outputs.tag }}"
+    - name: Echo increment part of the new tag
+      run: |
+        echo "The version increment was: ${{ steps.dryRunGetNewVer.outputs.part }}"
+  push-tag:
+    runs-on: ubuntu-24.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Push new version tag
+      uses: anothrNick/github-tag-action@1.64.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.TAGGING_TOKEN }} # if you don't want to set write permissions use a PAT token
+        WITH_V: false
+        REPO_OWNER: imaging8896
+        DEFAULT_BUMP: patch
