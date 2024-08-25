@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools >= 73.0", "setuptools-git-versioning>=2.0,<3"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools-git-versioning]
+enabled = true
+
+[project]
+dynamic = ["version", "readme", "dependencies"]
+name = "py-open-news"
+license = {file = "LICENSE"}
+requires-python = ">=3.10"
+authors = [
+  {name = "Shin-Hong Chen(Ted)", email = "imaging8896@gmail.com"},
+]
+maintainers = [
+  {name = "Shin-Hong Chen(Ted)", email = "imaging8896@gmail.com"},
+]
+description = "Get free news for our little project"
+keywords = ["news"]
+classifiers = [
+    #   1 - Planning
+    #   2 - Pre-Alpha
+    #   3 - Alpha
+    #   4 - Beta
+    #   5 - Production/Stable
+    "Development Status :: 1 - Planning",
+    "Environment :: Web Environment",
+    "Framework :: Scrapy",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content :: News/Diary",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+
+    # Pick your license as you wish (see also "license" above)
+    "License :: OSI Approved :: MIT License",
+
+    # Specify the Python versions you support here.
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.urls]
+Repository = "https://github.com/imaging8896/open-news"
+Changelog = "https://github.com/imaging8896/open-news/blob/main/CHANGELOG.md"
+
+[tool.setuptools.dynamic]
+readme = {file = "README.md", content-type = "text/markdown"}
+dependencies = {file = "requirements.txt"}
+
+[tool.setuptools]
+packages = ["open_news"]
