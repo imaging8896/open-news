@@ -1,11 +1,15 @@
 name: ci-stage-test
 
 on:
-  push:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
     branches:
-    - 'pre-release'
+      - 'pre-release'
   schedule:
-  - cron:  '0 23 * * *'    # At every day 7:00 
+    - cron:  '0 23 * * *'    # At every day 7:00 
 
 jobs:
   unit-test:
