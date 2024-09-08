@@ -7,7 +7,7 @@ on:
       - synchronize
       - reopened
     branches:
-      - 'pre-release'
+      - 'main'
   schedule:
     - cron:  '0 23 * * *'    # At every day 7:00 
 
