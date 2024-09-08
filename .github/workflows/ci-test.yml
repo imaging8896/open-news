@@ -20,5 +20,5 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install pytest
+        python -m pip install pytest requests
     - run: python -m pytest -s -v test/unit_test
