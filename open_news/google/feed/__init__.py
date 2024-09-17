@@ -1,8 +1,8 @@
 import requests
 import xml.etree.ElementTree as ET
 
-from .constant import Category, Location
 from .channel import GoogleFeedChannel
+from ..constant import Category, Location
 
 
 def get_feed(category: Category, category_id: str, location: Location, section_id: str = None) -> list[GoogleFeedChannel]:

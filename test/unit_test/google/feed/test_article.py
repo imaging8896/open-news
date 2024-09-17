@@ -1,7 +1,5 @@
 import pytest
 
-from unittest.mock import MagicMock, patch
-
 from open_news.google.feed import article
 from open_news.google.feed.exception import WrongNewsXML_FormatError
 
