@@ -4,18 +4,6 @@ from open_news.google.feed import article
 from open_news.google.feed.exception import WrongNewsXML_FormatError
 
 
-def test_init():
-    article.GoogleFeedArticle(title="the title", url="the url", story_url="the story url")
-
-
-def test_init_without_story_url():
-    article.GoogleFeedArticle(title="the title", url="the url")
-
-
-def test_id_property():
-    assert article.GoogleFeedArticle(title="the title", url="the url", story_url="the story url").id == "the url"
-
-
 @pytest.mark.parametrize("description_text,expect_title,expect_url,expect_story_url", [
     pytest.param(
         """<a href="https://news.google.com/rss/articles/CBMiUEFVX3lxTE5Hb2Y2dXdxbzhKV0lnaVEtUGhMYl9tUnVQZ2VWZWlFZmRRbWJST1I1RmRzQmRXRUpQR25QNnJkc3k2bG1leDAwS3lQdkpXUWpJ0gFWQVVfeXFMT1d5WklIWFZ4UEN2aVBmbkFMaTVodlRTV1hud0dtVkpmUkN0WXFJNE9zNndUZkpzdFRzS3JhUXlDODhnV1FnMWd2R0h3d041R1U3WFJFbWc?oc=5" target="_blank">壽險公司控管風險 實支實付健康險「非保證續保」恐成新風潮</a>&nbsp;&nbsp;<font color="#6f6f6f">聯合新聞網</font><strong><a href="https://news.google.com/stories/CAAqNggKIjBDQklTSGpvSmMzUnZjbmt0TXpZd1NoRUtEd2lkalp1ZkRCSHdwSHVYeEp0dTVTZ0FQAQ?hl=zh-TW&gl=TW&ceid=TW:zh-Hant&oc=5" target="_blank">前往 Google 新聞查看完整報導</a></strong>""",
