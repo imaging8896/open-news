@@ -43,4 +43,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.TAGGING_TOKEN }} # if you don't want to set write permissions use a PAT token
         WITH_V: false
         REPO_OWNER: imaging8896
-        DEFAULT_BUMP: patch
+        DEFAULT_BUMP: patch # major, minor
