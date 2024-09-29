@@ -1,20 +1,11 @@
 import re
 
-from dataclasses import dataclass
-
 from .exception import WrongNewsXML_FormatError
+from ..article import GoogleNewsArticle
 
 
-@dataclass(frozen=True, slots=True, kw_only=True)
-class GoogleFeedArticle:
-    title: str
-    url: str
-    story_url: str = None
-
-    @property
-    def id(self) -> str:
-        return self.url
-
+class GoogleFeedArticle(GoogleNewsArticle):
+    
     @classmethod
     def create_from_description_with_story(clz, description_text: str):
         description_text = description_text.strip()

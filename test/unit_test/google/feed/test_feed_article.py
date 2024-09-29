@@ -1,21 +1,7 @@
 import pytest
 
-from unittest.mock import MagicMock, patch
-
 from open_news.google.feed import article
 from open_news.google.feed.exception import WrongNewsXML_FormatError
-
-
-def test_init():
-    article.GoogleFeedArticle(title="the title", url="the url", story_url="the story url")
-
-
-def test_init_without_story_url():
-    article.GoogleFeedArticle(title="the title", url="the url")
-
-
-def test_id_property():
-    assert article.GoogleFeedArticle(title="the title", url="the url", story_url="the story url").id == "the url"
 
 
 @pytest.mark.parametrize("description_text,expect_title,expect_url,expect_story_url", [

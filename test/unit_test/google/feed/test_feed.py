@@ -25,7 +25,6 @@ def mock_requests_get():
     with (
         patch.object(feed.requests, "get", autospec=True) as mock,
         patch.object(mock_response, "raise_for_status", autospec=True),
-        # patch.object(mock_response, "__exit__", autospec=True),
     ):
         mock_response.raw = MagicMock()
         mock.return_value = mock_response
