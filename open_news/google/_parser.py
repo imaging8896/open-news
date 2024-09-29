@@ -55,7 +55,7 @@ class GoogleNewsHTMLParser(HTMLParser):
                         GoogleNewsArticle(
                             title=self._cur_article_title,
                             url=self._cur_article_url, 
-                            publish_time=datetime.fromisoformat(datetime_str.strip()),
+                            publish_time=_workaround_py10_datetime_fromisoformat(datetime_str),
                         )
                     )
                     self._cur_article_url, self._cur_article_title = None, None
@@ -80,3 +80,14 @@ def _get_attribute(attributes: list[tuple[str, str]], attribute_name: str) -> st
         for name, value in attributes:
             if name == attribute_name:
                 return value
+
+
+def _workaround_py10_datetime_fromisoformat(datetime_str: str):
+    import sys
+    from datetime import timezone
+
+
+    if sys.version_info < (3, 11) and datetime_str.strip().endswith("Z"):
+        return datetime.fromisoformat(datetime_str.strip()[:-1]).replace(tzinfo=timezone.utc)
+    else:
+        return datetime.fromisoformat(datetime_str.strip())
