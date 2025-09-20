@@ -40,7 +40,7 @@ jobs:
     - name: Push new version tag
       uses: anothrNick/github-tag-action@1.64.0
       env:
-        GITHUB_TOKEN: ${{ secrets.TAGGING_TOKEN }} # if you don't want to set write permissions use a PAT token
+        GITHUB_TOKEN: ${{ secrets.PUSH_GITHUB_TAG_TOKEN }} # if you don't want to set write permissions use a PAT token
         WITH_V: false
         REPO_OWNER: imaging8896
         DEFAULT_BUMP: patch # major, minor
