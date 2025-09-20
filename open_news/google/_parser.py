@@ -75,7 +75,7 @@ class GoogleNewsHTMLParser(HTMLParser):
                     self._cur_article_title = stripped_data
 
 
-def _get_attribute(attributes: list[tuple[str, str]], attribute_name: str) -> str | None:
+def _get_attribute(attributes: list[tuple[str, str | None]], attribute_name: str) -> str | None:
     if isinstance(attributes, list):
         for name, value in attributes:
             if name == attribute_name:

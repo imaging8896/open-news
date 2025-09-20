@@ -1,6 +1,5 @@
 import pytest
 
-from requests import Response
 from unittest.mock import patch, MagicMock, call
 from xml.etree.ElementTree import Element
 
@@ -21,13 +20,7 @@ def mock_channel_create():
 
 @pytest.fixture
 def mock_requests_get():
-    mock_response = Response()
-    with (
-        patch.object(feed.requests, "get", autospec=True) as mock,
-        patch.object(mock_response, "raise_for_status", autospec=True),
-    ):
-        mock_response.raw = MagicMock()
-        mock.return_value = mock_response
+    with patch("open_news.google.feed.request_get", autospec=True) as mock:
         yield mock
 
 
@@ -108,7 +101,6 @@ def test_get_feed(call_args, expect_called_url, mock_requests_get, mock_et_from_
     ]
 
     mock_requests_get.assert_called_once_with(expect_called_url, timeout=10)
-    mock_requests_get.return_value.raise_for_status.assert_called_once_with()
     mock_channel_create.assert_has_calls(
         [
             call(element)

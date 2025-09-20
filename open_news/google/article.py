@@ -6,8 +6,8 @@ from datetime import datetime
 class GoogleNewsArticle:
     title: str
     url: str
-    story_url: str = None
-    publish_time: datetime = None
+    story_url: str | None = None
+    publish_time: datetime | None = None
 
     @property
     def id(self) -> str:

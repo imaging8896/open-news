@@ -19,7 +19,7 @@ def test_init():
 def test_handle_starttag_for_article_tag():
     parser = _parser.GoogleNewsHTMLParser()
     
-    parser.handle_starttag("article", None)
+    parser.handle_starttag("article", [])
 
     assert parser._entering_article
     assert not parser._entering_a
