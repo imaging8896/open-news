@@ -1,11 +1,7 @@
 name: ci-stage-test
 
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
+  push:
     branches:
       - 'pre-release'
   schedule:
